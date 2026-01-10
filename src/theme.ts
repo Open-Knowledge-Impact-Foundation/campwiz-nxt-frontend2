@@ -24,7 +24,7 @@ declare module '@mui/material/IconButton' {
 
 const theme = createTheme({
   typography: {
-    fontFamily: `var(--font-roboto)`,
+    fontFamily: "'Cormorant Garamond', 'Roboto', sans-serif",
   },
   colorSchemes: {
     dark: true,

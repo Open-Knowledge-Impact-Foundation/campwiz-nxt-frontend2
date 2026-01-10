@@ -3,49 +3,56 @@ import { CircularProgress, Paper, Typography, useMediaQuery, useTheme } from "@m
 
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import LoginBackground from '@/assets/login5.gif';
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import WikipediaIcon from "@/components/WikipediaIcon";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
+import { fetchAPIFromBackendSingleWithErrorHandling } from "@/api";
+import { useNavigate } from "react-router-dom";
 
-interface LoginInitiateResponse {
-    redirect_uri?: string;
-    error?: string;
+interface RedirectResponse {
+    redirect: string;
 }
-
 // Mock function - replace with actual implementation
-const loginInitiateActionClient = async (
-    baseURI: string,
-    next: string | null,
-    pathName: string
-): Promise<LoginInitiateResponse> => {
-    // Call your backend API here
-    const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ baseURI, next, pathName })
-    });
-    const data = await response.json();
-    if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
-    }
-    if (data.redirect_uri) {
-        window.location.href = data.redirect_uri;
-    }
-    return data;
-};
+
 
 const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
     const searchParams = new URLSearchParams(window.location.search);
     const next = searchParams.get('next');
-    const baseURI = window.location.origin;
     const pathName = searchParams.get('pathName') || '/user/login';
     const [clicked, setClicked] = useState(false);
     const [error, setError] = useState<Error | null>(null);
     const { t } = useTranslation();
     const theme = useTheme();
-    
-    const bgColor = theme.palette.mode === 'dark' 
+    const navigate = useNavigate();
+    const loginInitiateActionClient = useCallback(async () => {
+        setError(null);
+        setClicked(true);
+        try {
+            const qs = `?next=${next || '/'}`
+            console.log('Fetching login initiation from:', pathName + qs);
+            const res = await fetchAPIFromBackendSingleWithErrorHandling<RedirectResponse>(pathName + qs, {
+                cache: 'no-cache',
+                credentials: 'include',
+                redirect: 'manual',
+            });
+            if ('detail' in res) {
+                throw new Error(res.detail);
+            }
+            const redirectResponse = res.data as RedirectResponse;
+            console.log('Redirect response:', redirectResponse);
+            const location = redirectResponse.redirect;
+            if (!location) {
+                throw new Error('No redirect URI provided');
+            }
+            navigate(location);
+        } catch (e) {
+            setError(e as Error);
+        } finally {
+            setClicked(false);
+        }
+    }, [navigate, next, pathName]);
+    const bgColor = theme.palette.mode === 'dark'
         ? isMobile ? 'rgba(0,0,0, 0.95)' : 'rgba(0,0,0, 0.9)'
         : isMobile ? 'rgba(255,255,255, 0.95)' : 'rgba(255,255,255, 0.9)';
     return (
@@ -85,15 +92,7 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
                 />
             </Typography>
             <Button
-                onClick={() => {
-                    setError(null);
-                    loginInitiateActionClient(baseURI, next, pathName).catch((e) => {
-                        console.error(e);
-                        setClicked(false);
-                        setError(e);
-                    });
-                    setClicked(true)
-                }}
+                onClick={loginInitiateActionClient}
                 variant="contained"
                 color="primary"
                 sx={{
