@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@lottiefiles/dotlottie-react": "^0.17.12",
     "@mui/icons-material": "^7.3.7",
     "@mui/material": "^7.3.7",
     "@tailwindcss/postcss": "^4.1.18",
