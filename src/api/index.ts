@@ -8,6 +8,7 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
 }
 export async function fetchAPIFromBackendSingleWithErrorHandling<T>(path: string, req?: RequestInit): Promise<ResponseSingle<T> | ResponseError> {
     try {
+        console.log(`${API_PATH}${path}`, req)
         const res = await fetchFromBackend(`${API_PATH}${path}`, req)
         if (!res.ok) {
             const errorText = await res.text();
