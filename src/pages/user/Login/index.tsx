@@ -5,7 +5,8 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 import LoginBackground from '@/assets/login5.gif';
 import { useCallback, useState } from "react";
 import WikipediaIcon from "@/components/WikipediaIcon";
-import { useTranslation } from "react-i18next";
+import LottieWrapper from "@/components/LottieWrapper";
+import { translationLink, useTranslation } from "@root/i18n/client";
 import { Trans } from "react-i18next";
 import { fetchAPIFromBackendSingleWithErrorHandling } from "@/api";
 import { useNavigate } from "react-router-dom";
@@ -58,12 +59,13 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
     return (
         <Paper sx={{
             padding: 2,
-            ml: 'auto',
+            ml: { xs: 0, sm: 'auto' },
             mr: 0,
             textAlign: 'center',
             height: '100%',
             position: 'fixed',
             right: 0,
+            left: { xs: 0 },
             backgroundColor: bgColor,
             width: {
                 xs: '100%',
@@ -71,11 +73,15 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
                 md: '50%',
                 lg: '40%',
                 xl: '40%'
-            }
+            },
+            borderRadius: { xs: 0 },
+            boxSizing: 'border-box',
+            overflowY: 'auto',
         }}>
             <img src='/logo.svg' alt="Logo" width={100} height={100} style={{ margin: 'auto', display: 'block' }} />
+            <LottieWrapper src='/lottie/login-required.lottie' loop={true} />
             <Typography variant="h5" sx={{ mb: 2 }}>
-                {t('login.title')}
+                {t('login.title')} 
             </Typography>
             {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{t(error.message)}</Typography>}
             <Typography variant="body1" sx={{ mb: 2 }}>
@@ -84,11 +90,12 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
                     t={t}
                     components={[<a
                         key="1"
-                        href="https://translatewiki.net"
+                        href={translationLink}
                         style={{ textDecoration: 'none', color: 'blue' }}
                         className="translation-link"
                         target="_blank"
-                        rel="noopener noreferrer">{t('setting.translatewiki')}</a>]}
+                        rel="noopener noreferrer">{t('settings.translatewiki')}
+                        </a>]}
                 />
             </Typography>
             <Button
