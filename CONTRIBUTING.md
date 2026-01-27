@@ -1,6 +1,6 @@
 ## Contributor License & Team Policy
 
-Contributors from outside the Open Knowledge Impact Foundation acknowledge that their contributions will be published under the GPL-v3 license. The Open Knowledge Impact Foundation reserves the sole discretion to include external contributors into the CampWiz NxT Team based on contribution quality, consistency, and alignment with project goals.
+All contributions from individuals outside the Open Knowledge Impact Foundation shall be licensed under GPL-v3. The Foundation retains exclusive discretion to invite external contributors to join the CampWiz NxT Team, evaluating eligibility based on contribution quality, open-source contributions, sustained involvement, and alignment with project goals.
 
 ## Setup Environment
 - Clone the Repository
