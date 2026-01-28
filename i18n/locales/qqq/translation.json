@@ -121,6 +121,100 @@
     "translate": "{{Identical|Translate}}",
     "copyright": "By <0>CampWiz NXT Team</0>"
   },
+  "privacy": {
+    "title": "Page title for the Privacy Policy page. {{Identical|Privacy Policy}}",
+    "effectiveDate": "Label before the effective date of the privacy policy.",
+    "intro": "Opening paragraph of the privacy policy explaining the page's purpose. Keep <code><strong>CampWiz NXT</strong></code> as-is.",
+    "infoWeCollect": {
+      "title": "Section heading for information collection in the privacy policy.",
+      "intro": "Introductory text before listing collected information.",
+      "username": "Description of collected data: the user's public Wikimedia username.",
+      "registrationDate": "Description of collected data: when the user registered on Wikimedia.",
+      "ipAddress": "Description of collected data: the user's public IP address.",
+      "outro": "Explanation of why this information is collected and how it's used."
+    },
+    "cookies": {
+      "title": "Section heading about cookie usage in the privacy policy.",
+      "intro": "Introductory text before listing cookie purposes.",
+      "authentication": "Explanation of authentication cookies (OAuth2.0). Technical term may be kept as-is.",
+      "authorization": "Explanation of authorization cookies (JWT Token). Technical term may be kept as-is.",
+      "outro": "Statement that cookies are not used for tracking or advertising. Keep <code><strong>not</strong></code> emphasis."
+    },
+    "monitoring": {
+      "title": "Section heading about user activity monitoring.",
+      "intro": "Introductory text before listing monitored activities.",
+      "campaignCreation": "Activity monitored: when users create campaigns. {{Identical|Campaign creation}}",
+      "projectCreation": "Activity monitored: when users create projects.",
+      "roundCreation": "Activity monitored: when users create rounds.",
+      "outro": "Important clarification that jury evaluations are NOT monitored. Keep <code><strong>do not monitor</strong></code> emphasis."
+    },
+    "errorMonitoring": {
+      "title": "Section heading about error tracking and performance monitoring.",
+      "intro": "Explanation that Sentry is used for error tracking. Keep <code><strong>Sentry &trade;</strong></code> as-is.",
+      "dataIntro": "Introductory text before listing data sent to Sentry.",
+      "username": "Data sent to Sentry: the user's Wikimedia username.",
+      "internalId": "Data sent to Sentry: the user's internal CampWiz ID.",
+      "noIp": "Clarification that IP addresses are NOT sent to Sentry. Keep <code><strong>does not</strong></code> emphasis.",
+      "learnMore": "Link to Sentry's privacy policy. Keep <code><0>https://sentry.io/trust/privacy/</0></code> as-is (will be replaced with link markup)."
+    },
+    "dataSharing": {
+      "title": "Section heading about data sharing and retention policies.",
+      "noSell": "Statement about not selling user data, with exception for submission results. Keep <code><strong>do not sell, share, or disclose</strong></code> emphasis and <code><0>good faith</0></code> link markup.",
+      "internalUse": "Statement that data is only used internally.",
+      "retention": "Statement about how long data is retained."
+    },
+    "yourRights": {
+      "title": "Section heading about user rights regarding their data.",
+      "content": "Explanation of user rights and contact information. Keep <code><0>support@wikilovesfolklore.org</0></code> as-is (will be replaced with email link)."
+    }
+  },
+  "terms": {
+    "title": "Page title for the Terms of Service page. {{Identical|Terms of Service}}",
+    "effectiveDate": "Label before the effective date of the terms. {{Identical|Effective Date}}",
+    "intro": "Opening paragraph of the terms of service. Keep <code><strong>CampWiz NXT</strong></code> as-is.",
+    "eligibility": {
+      "title": "Section heading for eligibility requirements (numbered section 1).",
+      "content": "Explanation of who can use the platform (must have Wikimedia account)."
+    },
+    "acceptableUse": {
+      "title": "Section heading for acceptable use policy (numbered section 2).",
+      "intro": "Introductory text before listing prohibited activities.",
+      "fraudulent": "Prohibited activity: creating fraudulent campaigns.",
+      "exploiting": "Prohibited activity: exploiting bugs or vulnerabilities.",
+      "unauthorized": "Prohibited activity: attempting unauthorized access."
+    },
+    "userData": {
+      "title": "Section heading about user data collection (numbered section 3).",
+      "content": "Explanation of what data is collected and reference to privacy policy. Keep <code><0>Privacy Policy</0></code> as-is (will be replaced with link)."
+    },
+    "monitoring": {
+      "title": "Section heading about monitoring and abuse prevention (numbered section 4).",
+      "intro": "Introductory text before listing monitored activities.",
+      "campaignCreation": "Monitored activity: campaign creation. {{Identical|Campaign creation}}",
+      "projectRound": "Monitored activity: project and round creation.",
+      "outro": "Clarification that jury evaluations are not monitored."
+    },
+    "serviceAvailability": {
+      "title": "Section heading about service availability (numbered section 5).",
+      "content": "Statement that service availability is not guaranteed."
+    },
+    "disclaimer": {
+      "title": "Section heading for legal disclaimer (numbered section 6).",
+      "content": "Legal disclaimer about liability and warranties."
+    },
+    "immunity": {
+      "title": "Section heading for immunity clause (numbered section 7).",
+      "content": "Legal statement about immunity from liability for user actions."
+    },
+    "changes": {
+      "title": "Section heading about changes to terms (numbered section 8).",
+      "content": "Statement that terms may be updated over time."
+    },
+    "contact": {
+      "title": "Section heading for contact information (numbered section 9).",
+      "content": "Contact email for questions about terms. Keep <code><0>support@wikilovesfolklore.org</0></code> as-is (will be replaced with email link)."
+    }
+  },
   "error": {
     "noAssignedCampaigns": "The error message that would be shown when the user has campaigns found in which the person is assigned as a jury or co-ordinator. This label would be shown in the home page",
     "loadingSubmissionDetails": "Could not load submission details: <code><nowiki>{{error}}</nowiki></code>. Here <code><nowiki>{{error}}</nowiki></code> is a placeholder for the error message. This error would be shown when submission details could not be fetched from the backend. This label would be shown in the submission details page",

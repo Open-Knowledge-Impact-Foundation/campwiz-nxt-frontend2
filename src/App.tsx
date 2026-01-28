@@ -1,10 +1,16 @@
 
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import SessionProvider from './providers/SessionProvider'
 import LoginPage from './pages/user/Login'
-import { ThemeProvider } from '@mui/material'
+import {  ThemeProvider, CssBaseline } from '@mui/material'
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import theme from './theme'
+import GlobalLoadingPage from './components/GlobalLoadingPage'
+
+const PrivacyPolicy = lazy(() => import('./pages/policy/Privacy'))
+const TermsOfService = lazy(() => import('./pages/policy/Terms')) 
 const PrivateRoute = () => {
   return (
     <SessionProvider>
@@ -16,11 +22,17 @@ const PrivateRoute = () => {
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <InitColorSchemeScript attribute="class" />
       <BrowserRouter>
-        <Routes>
-          <Route path="/user/login" element={<LoginPage />} />
-          <Route path="/*" element={<PrivateRoute />} />
-        </Routes>
+        <Suspense fallback={<GlobalLoadingPage />}>
+          <Routes>
+            <Route path="/user/login" element={<LoginPage />} />
+            <Route path="/policy/privacy" element={<PrivacyPolicy />} />
+            <Route path="/policy/terms" element={<TermsOfService />} />
+            <Route path="/*" element={<PrivateRoute />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </ThemeProvider>
   )
