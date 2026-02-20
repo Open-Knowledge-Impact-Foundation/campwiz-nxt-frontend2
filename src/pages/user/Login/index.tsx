@@ -17,7 +17,7 @@ interface RedirectResponse {
 // Mock function - replace with actual implementation
 
 
-const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
+const LoginComponent = ({ }: { isMobile: boolean }) => {
     const searchParams = new URLSearchParams(window.location.search);
     const next = searchParams.get('next');
     const pathName = searchParams.get('pathName') || '/user/login';
@@ -53,9 +53,9 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
             setClicked(false);
         }
     }, [navigate, next, pathName]);
-    const bgColor = theme.palette.mode === 'dark'
-        ? isMobile ? 'rgba(18, 18, 18, 0.98)' : 'rgba(18, 18, 18, 0.95)'
-        : isMobile ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)';
+    // const bgColor = theme.palette.mode === 'dark'
+    //     ? isMobile ? 'rgba(18, 18, 18, 0.98)' : 'rgba(18, 18, 18, 0.95)'
+    //     : isMobile ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)';
     return (
         <Paper sx={{
             padding: 2,
