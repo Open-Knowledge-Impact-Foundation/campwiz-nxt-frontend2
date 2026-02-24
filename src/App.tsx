@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import SessionProvider from './providers/SessionProvider'
 import LoginPage from './pages/user/Login'
+import Dashboard from './pages/home/Home'
 import CallbackPage from './pages/user/Callback'
 import CallbackWritePage from './pages/user/Callback/write'
 import { ThemeProvider, CssBaseline } from '@mui/material'
@@ -16,7 +17,7 @@ const TermsOfService = lazy(() => import('./pages/policy/Terms'))
 const PrivateRoute = () => {
   return (
     <SessionProvider>
-      <h1>Welcome to the App!</h1>
+      <Dashboard />
     </SessionProvider>
   )
 }
@@ -34,6 +35,7 @@ function App() {
             <Route path="/user/callback/write" element={<CallbackWritePage />} />
             <Route path="/policy/privacy" element={<PrivacyPolicy />} />
             <Route path="/policy/terms" element={<TermsOfService />} />
+            <Route path="/" element={<SessionProvider requireAuth={false}><Dashboard /></SessionProvider>} />
             <Route path="/*" element={<PrivateRoute />} />
           </Routes>
         </Suspense>
