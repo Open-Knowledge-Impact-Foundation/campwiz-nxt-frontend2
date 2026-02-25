@@ -9,13 +9,10 @@ import LottieWrapper from "@/components/LottieWrapper";
 import { translationLink, useTranslation } from "@root/i18n/client";
 import { Trans } from "react-i18next";
 import { fetchAPIFromBackendSingleWithErrorHandling } from "@/api";
-import { useNavigate } from "react-router-dom";
 
 interface RedirectResponse {
     redirect: string;
 }
-// Mock function - replace with actual implementation
-
 
 const LoginComponent = ({ }: { isMobile: boolean }) => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -25,7 +22,6 @@ const LoginComponent = ({ }: { isMobile: boolean }) => {
     const [error, setError] = useState<Error | null>(null);
     const { t } = useTranslation();
     const theme = useTheme();
-    const navigate = useNavigate();
     const loginInitiateActionClient = useCallback(async () => {
         setError(null);
         setClicked(true);
@@ -35,7 +31,6 @@ const LoginComponent = ({ }: { isMobile: boolean }) => {
             const res = await fetchAPIFromBackendSingleWithErrorHandling<RedirectResponse>(pathName + qs, {
                 cache: 'no-cache',
                 credentials: 'include',
-                redirect: 'manual',
             });
             if ('detail' in res) {
                 throw new Error(res.detail);
@@ -46,13 +41,13 @@ const LoginComponent = ({ }: { isMobile: boolean }) => {
             if (!location) {
                 throw new Error('No redirect URI provided');
             }
-            navigate(location);
+            window.location.href = location;
         } catch (e) {
             setError(e as Error);
         } finally {
             setClicked(false);
         }
-    }, [navigate, next, pathName]);
+    }, [next, pathName]);
     // const bgColor = theme.palette.mode === 'dark'
     //     ? isMobile ? 'rgba(18, 18, 18, 0.98)' : 'rgba(18, 18, 18, 0.95)'
     //     : isMobile ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)';

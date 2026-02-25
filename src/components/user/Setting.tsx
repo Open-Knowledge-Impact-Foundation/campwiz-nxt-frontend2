@@ -1,5 +1,4 @@
-import { translationLink } from "@/components/home/Footer";
-import { useTranslation } from "react-i18next";
+import { translationLink, useTranslation } from "@root/i18n/client";
 import { cookieName, languages } from "@root/i18n/settings";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField, Typography } from "@mui/material";
 import Cookies from "js-cookie";
