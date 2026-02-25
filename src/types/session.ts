@@ -1,11 +1,24 @@
 export interface User {
     id: string;
+    registeredAt: string;
     username: string;
-    email: string;
+    permission: number;
+    projectId: string | null;
 }
 
+type PermissionName = (
+    'PermissionApproveRejectCampaign' | 'PermissionCreateCampaign' | 'PermissionCreateUser' | 'PermissionDeleteCampaign'
+    | 'PermissionDeleteUser' | 'PermissionEditCampaign' | 'PermissionEditUser' | 'PermissionViewCampaign' | 'PermissionViewUser'
+    | 'PermissionOtherProjectAccess' | 'PermissionUpdateCampaignDetails'
+)
+
+type PermissionNumericValue = number
+
+export type PermissionMap = {
+    [key in PermissionName]: PermissionNumericValue;
+};
+
 export interface Session extends User {
-    permissionMap: Record<string, boolean>;
-    logout: () => Promise<void>;
-    hasPermission: (permission: string) => boolean;
+    permissions: PermissionName[];
+    permissionMap: PermissionMap;
 }

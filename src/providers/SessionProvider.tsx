@@ -9,7 +9,7 @@ const SessionLoading = () => {
 const SessionError = ({ error }: { error: Error }) => {
     return <div>Error loading session: {error.message}</div>;
 }
-const SessionProvider = ({ children }: { children: React.ReactNode }) => {
+const SessionProvider = ({ children, requireAuth = true }: { children: React.ReactNode, requireAuth?: boolean }) => {
     const [sessionLoading, setSessionLoading] = useState(true);
     const [session, setSession] = useState<Session | null>(null);
     const [sessionError, setSessionError] = useState<Error | null>(null);
@@ -33,19 +33,24 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
         };
         fetchSession();
     }, []);
-    if (!session && !sessionLoading) {
+
+    // If authentication is required for this provider and there is no session after loading, redirect to login
+    if (!session && !sessionLoading && requireAuth) {
         let path = encodeURIComponent(window.location.pathname + window.location.search);
         if (window.location.pathname.startsWith('/user/login')) {
             path = '/';
         }
         return <Navigate to={`/user/login?next=${path}`} replace />;
     }
-    if (sessionLoading) {
+
+    // Show loading/error UI only when auth is required. For public pages, render children while fetching.
+    if (sessionLoading && requireAuth) {
         return <SessionLoading />;
     }
-    if (sessionError) {
+    if (sessionError && requireAuth) {
         return <SessionError error={sessionError} />;
     }
+
     return (
         <sessionContext.Provider value={session}>
             {children}
